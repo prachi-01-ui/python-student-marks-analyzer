@@ -106,7 +106,31 @@ while True:
                 print("Result:",student["result"])
                 print("="*38)
     elif choice=='3':
-        print("Option 3 selected")
+        search_name=input("Enter student's name to search: ").strip()
+        
+        found=False
+        
+        for student in students:
+            if student["name"].lower()==search_name.lower():
+                found=True
+                
+                print("\n========== Student Details ==========")
+                print("Student Name:",student["name"])
+                print("AI and its Applications:",student["AI and its Applications"],"/ 40.0")
+                print("OOPS in Java:",student["OOPS in Java"],"/ 40.0")
+                print("DBMS:",student["DBMS"],"/ 30.0")
+                print("Operating System:",student["Operating System"],"/ 30.0")
+                print("Engineering Maths:",student["Engineering Maths"],"/ 30.0")
+                print("Advanced Data Structures:",student["Advanced Data Structures"],"/ 40.0")
+                print("-"*38)
+                print("Total Marks:",student["total"],"/ 210.0")
+                print("Percentage:",round(student["percentage"],2),"%")
+                print("Grade:",student["grade"])
+                print("Result:",student["result"])
+                print("="*38)
+                break
+        if not found:
+            print("Student not found....")
     elif choice=='4':
         print("Option 4 selected")
     elif choice=='5':
