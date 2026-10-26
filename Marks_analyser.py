@@ -165,7 +165,35 @@ while True:
             print("Class Average:",round(class_average,2),"%")
             print("="*34)
     elif choice=='6':
-        print("Option 6 selected")
+        if len(students)==0:
+            print("No record found")
+        else:
+            subjects={
+                "AI and its Applications":40,
+                "OOPS in Java":40,
+                "DBMS":30,
+                "Operating System":30,
+                "Engineering Maths":30,
+                "Advanced Data Structures":40
+            }
+            
+            print("\n====== SUBJECT-WISE HIGHEST MARKS ======")
+            
+            for subject,maximum in subjects.items():
+                highest_student=students[0]
+                
+                for student in students:
+                    if student[subject]>highest_student[subject]:
+                        highest_student=student
+                        
+                print(f"\nSubject: {subject}")
+                print(
+                    f"Highest Marks: {highest_student[subject]} / {maximum}"
+                )
+                print("Student Name:",highest_student["name"])
+            
+            print("="*40)
+            
     elif choice=='7':
         print("Exiting STUDENT MARKS ANALYSER.....")
         break
