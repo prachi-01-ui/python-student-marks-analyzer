@@ -1,3 +1,18 @@
+import json
+
+def load_students():
+    try:
+        with open("students.json","r") as file:
+            return json.load(file)
+    except FileNotFoundError:
+        return []
+    except json.JSONDecodeError:
+        print("students.json is either empty or it contains invalid JSON.")
+        return []
+    
+def save_students():
+    with open("students.json","w") as file:
+        json.dump(students,file,indent=4)
 #function for inputting marks in Choice 1
 def get_valid_marks(subject,maximum):
     while True:
@@ -12,7 +27,7 @@ def get_valid_marks(subject,maximum):
         except ValueError:
             print("Enter a numeric value.The current input is invalid.")
 
-students=[]
+students=load_students()
 
 #menu or choices to select which action to perform
 while True:     
@@ -83,6 +98,7 @@ while True:
             
         }
         students.append(student)
+        save_students()
         print(f"Student {name} added successfully!!")
 
         
