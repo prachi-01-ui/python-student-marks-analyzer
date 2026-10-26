@@ -150,7 +150,20 @@ while True:
             print("Result:",topper["result"])
             print("="*34)
     elif choice=='5':
-        print("Option 5 selected")
+        if len(students)==0:
+            print("No record found")
+        else:
+            total_percentage=0
+            
+            for student in students:
+                total_percentage+=student["percentage"]
+                
+            class_average=total_percentage/len(students)
+            
+            print("\n========== CLASS AVERAGE ==========")
+            print("Number of students in record:",len(students))
+            print("Class Average:",round(class_average,2),"%")
+            print("="*34)
     elif choice=='6':
         print("Option 6 selected")
     elif choice=='7':
