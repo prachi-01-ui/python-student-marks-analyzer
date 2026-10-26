@@ -11,7 +11,8 @@ def get_valid_marks(subject,maximum):
         
         except ValueError:
             print("Enter a numeric value.The current input is invalid.")
-    
+
+students=[]
 
 #menu or choices to select which action to perform
 while True:     
@@ -40,22 +41,20 @@ while True:
         maths_marks=get_valid_marks("Engineering Maths", 30)
         ads_marks=get_valid_marks("Advanced Data Structures", 40)
         
-        print("\nStudent Details")
-        print("Student Name:",name)
-        print("AI and its Applications:",ai_marks,"/ 40.0")
-        print("OOPS in Java:",oops_marks,"/ 40.0")
-        print("DBMS:",dbms_marks,"/ 30.0")
-        print("Operating System:",os_marks,"/ 30.0")
-        print("Engineering Maths:",maths_marks,"/ 30.0")
-        print("Advanced Data Structures:",ads_marks,"/ 40.0")
-        
         total_marks=(ai_marks+oops_marks+dbms_marks+os_marks+maths_marks+ads_marks)
         
         percentage=(total_marks/210) * 100
-        print("-"*38)
-        print("Total Marks obtained by the student:",total_marks)
-        print("Percentage:",round(percentage,2),"%")
         
+        if percentage>=90:
+            grade="A"
+        elif percentage>=80:
+            grade="B"
+        elif percentage>=70:
+            grade="C"
+        elif percentage>=60:
+            grade="D"
+        else:
+            grade="F"
         
         if (
             ai_marks >= 40 * 0.40
@@ -68,10 +67,44 @@ while True:
             result = "PASS"
         else:
             result = "FAIL"
+            
+        student={
+            "name": name,
+            "AI and its Applications":ai_marks,
+            "OOPS in Java":oops_marks,
+            "DBMS":dbms_marks,
+            "Operating System":os_marks,
+            "Engineering Maths":maths_marks,
+            "Advanced Data Structures":ads_marks,
+            "total":total_marks,
+            "percentage":percentage,
+            "grade":grade,
+            "result":result
+            
+        }
+        students.append(student)
+        print(f"Student {name} added successfully!!")
 
         
     elif choice=='2':
-        print("Option 2 selected")
+        if len(students)==0:
+            print("No student found in records.Kindly add a student first.")
+        else:
+            for student in students:
+                print("\n========== STUDENT DETAILS ==========")
+                print("Student Name:",student["name"])
+                print("AI and its Applications:",student["AI and its Applications"],"/ 40.0")
+                print("OOPS in Java:",student["OOPS in Java"],"/ 40.0")
+                print("DBMS:",student["DBMS"],"/ 30.0")
+                print("Operating System:",student["Operating System"],"/ 30.0")
+                print("Engineering Maths:",student["Engineering Maths"],"/ 30.0")
+                print("Advanced Data Structures:",student["Advanced Data Structures"],"/ 40.0")
+                print("-"*38)
+                print("Total Marks:",student["total"],"/ 210")
+                print("Percentage:",round(student["percentage"],2),"%")
+                print("Grade:",student["grade"])
+                print("Result:",student["result"])
+                print("="*38)
     elif choice=='3':
         print("Option 3 selected")
     elif choice=='4':
