@@ -136,19 +136,18 @@ while True:
             print("No student found in records.Kindly add a student first.")
             
         else:
-            topper=students[0]
+            highest_total=max(student["total"] for student in students)
+            
+            print("\n========== CLASS TOPPER(s) ==========")
             
             for student in students:
-                if student["total"]>topper['total']:
-                    topper=student
-                    
-            print("\n========== CLASS TOPPER ==========")
-            print("Student Name:",topper["name"])
-            print("Total Marks:",topper["total"])
-            print("Percentage:",round(topper["percentage"],2),"%")
-            print("Grade:",topper["grade"])
-            print("Result:",topper["result"])
-            print("="*34)
+                if student["total"]==highest_total:
+                    print("Student Name:",student["name"])
+                    print("Total Marks:",student["total"],"/ 210.0")
+                    print("Percentage:",round(student["percentage"],2),"%")
+                    print("Grade:",student["grade"])
+                    print("Result:",student["result"])
+                    print("-"*38)
     elif choice=='5':
         if len(students)==0:
             print("No record found")
@@ -180,17 +179,17 @@ while True:
             print("\n====== SUBJECT-WISE HIGHEST MARKS ======")
             
             for subject,maximum in subjects.items():
-                highest_student=students[0]
-                
-                for student in students:
-                    if student[subject]>highest_student[subject]:
-                        highest_student=student
-                        
+                highest_marks=max(student[subject] for student in students)
+                       
                 print(f"\nSubject: {subject}")
                 print(
-                    f"Highest Marks: {highest_student[subject]} / {maximum}"
+                    f"Highest Marks: {highest_marks} / {maximum}"
                 )
-                print("Student Name:",highest_student["name"])
+                print("Student Names:")
+                
+                for student in students:
+                    if student[subject]==highest_marks:
+                        print("-",student["name"])
             
             print("="*40)
             
