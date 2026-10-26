@@ -132,7 +132,23 @@ while True:
         if not found:
             print("Student not found....")
     elif choice=='4':
-        print("Option 4 selected")
+        if len(students)==0:
+            print("No student found in records.Kindly add a student first.")
+            
+        else:
+            topper=students[0]
+            
+            for student in students:
+                if student["total"]>topper['total']:
+                    topper=student
+                    
+            print("\n========== CLASS TOPPER ==========")
+            print("Student Name:",topper["name"])
+            print("Total Marks:",topper["total"])
+            print("Percentage:",round(topper["percentage"],2),"%")
+            print("Grade:",topper["grade"])
+            print("Result:",topper["result"])
+            print("="*34)
     elif choice=='5':
         print("Option 5 selected")
     elif choice=='6':
